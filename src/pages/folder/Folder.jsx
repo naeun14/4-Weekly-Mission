@@ -11,9 +11,8 @@ function Folder() {
       <main id="wrap">
         <FolderNav />
         <FolderCardPage />
-
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

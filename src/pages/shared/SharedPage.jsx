@@ -28,8 +28,8 @@ function SharedPage() {
           <SearchCard />
           <CardList cards={cards} />
         </section>
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

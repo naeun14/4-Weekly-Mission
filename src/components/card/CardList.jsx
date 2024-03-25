@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Card from "./Card";
 import "./CardList.css";
 
@@ -7,11 +6,11 @@ function CardList({ cards }) {
   console.log(cards);
   return (
     <ul className="card-list">
-      {cards.map(({ id, description, imageSource, createdAt, url }) => (
+      {cards.map(({ id, description, image_source, createdAt, url }) => (
         <Card
           key={id}
           description={description}
-          imageSource={imageSource}
+          imageSource={image_source}
           createdAt={createdAt}
           url={url}
         />

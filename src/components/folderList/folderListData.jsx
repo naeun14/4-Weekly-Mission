@@ -11,21 +11,33 @@ function FolderListData() {
   const [selectedFolder, setSelectedFolder] = useState("전체"); // 선택된 폴더 이름 상태 추가
 
   useEffect(() => {
-    const fetchFolderData = async () => {
-      //folder List 가져오기
-      const data = await getFolderList(1); // 사용자 ID를 1로 지정
-      setFolderData(data);
+    const fetchData = async () => {
+      try {
+        const folderId =
+          selectedFolder === "전체"
+            ? null
+            : folderData.find((folder) => folder.name === selectedFolder)?.id;
+        const data = await getLinks(11, folderId);
+        setCards(data);
+      } catch (error) {
+        console.error("Error fetching links:", error);
+        setCards([]);
+      }
     };
 
-    const fetchData = async () => {
-      //folder 페이지 card 가쟈오기
-      const data = await getLinks(1);
-      setCards(data);
+    const fetchFolderData = async () => {
+      try {
+        const data = await getFolderList(11); // 사용자 ID를 1로 지정
+        setFolderData(data);
+      } catch (error) {
+        console.error("Error fetching folder data:", error);
+        setFolderData([]);
+      }
     };
 
     fetchData();
     fetchFolderData();
-  }, []);
+  }, [selectedFolder]);
 
   return (
     <>
@@ -49,7 +61,11 @@ function FolderListData() {
           ))}
         </ul>
         <h1 className="folderCard--title">{selectedFolder}</h1>
-        <CardList cards={cards} />
+        {cards.length > 0 ? (
+          <CardList cards={cards} />
+        ) : (
+          <p>저장된 링크가 없습니다</p>
+        )}
       </article>
     </>
   );

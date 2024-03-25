@@ -4,15 +4,12 @@
   padding: 0;
 }
 
-html {
+html,
+body {
   font-family: Pretendard;
   font-size: 100%;
   font-style: normal;
   line-height: normal;
-  height: 100%;
-}
-
-body {
   width: 100%;
 }
 
